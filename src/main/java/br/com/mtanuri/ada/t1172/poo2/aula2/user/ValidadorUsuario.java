@@ -21,7 +21,7 @@ public class ValidadorUsuario {
     }
 
     private void carregarValidadores() {
-        Reflections reflections = new Reflections("br.com.mtanuri.ada.t1172.poo2.aula2");
+        Reflections reflections = new Reflections("br.com.mtanuri.ada.t1172.poo2.aula2.validadores.impl");
         Set<Class<? extends ValidacaoUsuario>> classes = reflections.getSubTypesOf(ValidacaoUsuario.class);
 
         for (Class<? extends ValidacaoUsuario> clazz : classes) {
