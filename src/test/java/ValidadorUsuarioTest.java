@@ -91,6 +91,7 @@ public class ValidadorUsuarioTest {
         try {
             ValidadorUsuario.getInstance().validar(usuarioDTO);
         } catch (DadosUsuarioInvalidosException ex) {
+            ex.printStackTrace();
             fail("Não deveria ter lançado uma DadosUsuarioInvalidosException");
         }
 
