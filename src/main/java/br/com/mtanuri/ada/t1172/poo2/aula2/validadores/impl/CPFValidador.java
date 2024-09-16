@@ -10,21 +10,18 @@ public class CPFValidador implements ValidacaoUsuario {
     @Override
     public void validar(UsuarioDTO usuarioDTO) throws DadosUsuarioInvalidosException {
 
-        boolean isBrasileiro = usuarioDTO.pais().equals("Brasil");
+        if (VerificadorDeNacionalidade.isBrasileiro(usuarioDTO)) {
+            String cpf = usuarioDTO.documento().replace(".", "").replace("-", "");
 
-        if(VerificadorDeNacionalidade.isBrasileiro(usuarioDTO)){
-            String cpf = usuarioDTO.documento().replace(".", "").replace("-","");
-
-            if(cpf.length()!=11){
-                throw new DadosUsuarioInvalidosException("O CPF é inválido.");
+            if (cpf.length() != 11) {
+                throw new DadosUsuarioInvalidosException("document.brazilian.invalid");
             }
 
-            try{
+            try {
                 Long.valueOf(cpf);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
-                throw new DadosUsuarioInvalidosException("O CPF é inválido.");
+                throw new DadosUsuarioInvalidosException("document.brazilian.invalid");
             }
         }
 
