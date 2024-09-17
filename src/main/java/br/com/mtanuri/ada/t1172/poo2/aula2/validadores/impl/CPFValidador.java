@@ -7,6 +7,8 @@ import br.com.mtanuri.ada.t1172.poo2.aula2.validadores.ValidacaoUsuario;
 
 public class CPFValidador implements ValidacaoUsuario {
 
+    String xpto = "";
+
     @Override
     public void validar(UsuarioDTO usuarioDTO) throws DadosUsuarioInvalidosException {
 
@@ -16,6 +18,8 @@ public class CPFValidador implements ValidacaoUsuario {
             if (cpf.length() != 11) {
                 throw new DadosUsuarioInvalidosException("document.brazilian.invalid");
             }
+
+            imprimir(xpto);
 
             try {
                 Long.valueOf(cpf);

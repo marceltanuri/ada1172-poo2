@@ -7,6 +7,13 @@ import java.util.Locale;
 
 public interface ValidacaoUsuario {
 
-    void validar(UsuarioDTO usuarioDTO) throws DadosUsuarioInvalidosException;
+
+
+     void validar(UsuarioDTO usuarioDTO) throws DadosUsuarioInvalidosException;
+
+    default void imprimir(String msg){
+        System.out.println(msg);
+    }
+
 
 }
