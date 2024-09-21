@@ -2,15 +2,33 @@ package br.com.mtanuri.ada.t1172.poo2.aula2.validadores.impl;
 
 import br.com.mtanuri.ada.t1172.poo2.aula2.user.DadosUsuarioInvalidosException;
 import br.com.mtanuri.ada.t1172.poo2.aula2.user.UsuarioDTO;
+import br.com.mtanuri.ada.t1172.poo2.aula2.user.VerificadorDeNacionalidade;
 import br.com.mtanuri.ada.t1172.poo2.aula2.validadores.ValidacaoUsuario;
 
 public class CPFValidador implements ValidacaoUsuario {
 
+    String xpto = "";
+
     @Override
     public void validar(UsuarioDTO usuarioDTO) throws DadosUsuarioInvalidosException {
 
-        //TODO minimamente validar o cpf
+        if (VerificadorDeNacionalidade.isBrasileiro(usuarioDTO)) {
+            String cpf = usuarioDTO.documento().replace(".", "").replace("-", "");
 
-        throw new DadosUsuarioInvalidosException("O CPF é inválido.");
+            if (cpf.length() != 11) {
+                throw new DadosUsuarioInvalidosException("document.brazilian.invalid");
+            }
+
+            imprimir(xpto);
+
+            try {
+                Long.valueOf(cpf);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new DadosUsuarioInvalidosException("document.brazilian.invalid");
+            }
+        }
+
+
     }
 }

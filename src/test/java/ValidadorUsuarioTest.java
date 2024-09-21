@@ -25,7 +25,7 @@ public class ValidadorUsuarioTest {
             ValidadorUsuario.getInstance().validar(usuarioDTO);
             fail("Deveria ter lançado uma DadosUsuarioInvalidosException");
         } catch (DadosUsuarioInvalidosException ex) {
-            assertEquals("O CPF é inválido.", ex.getMessage());
+            assertEquals("O CPF é inválido.", ex.getLocalizedMessage());
         }
 
         usuarioDTO = new UsuarioDTO.Builder()
@@ -91,6 +91,7 @@ public class ValidadorUsuarioTest {
         try {
             ValidadorUsuario.getInstance().validar(usuarioDTO);
         } catch (DadosUsuarioInvalidosException ex) {
+            ex.printStackTrace();
             fail("Não deveria ter lançado uma DadosUsuarioInvalidosException");
         }
 
